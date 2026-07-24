@@ -88,40 +88,46 @@ const whyNeutralAdvisory = [
 
 const scenarios = [
   {
-    number: "1",
-    title: "Post-Closure Banking Obligations",
-    description: "A company has completed repayment of its borrowing facilities. Months later, unresolved documentation, security release requirements, and institutional processes continue to delay closure.",
-    advisoryText: "Neutral Advisory helps develop a structured engagement strategy with the financial institution, align stakeholders, clarify obligations, and negotiate an efficient commercial resolution."
+    number: "01",
+    category: "BANKING",
+    title: "Post-Closure Banking Dispute",
+    description: "Loan obligations have been repaid, but unresolved documentation, security releases, or institutional processes continue to delay commercial closure.",
+    howWeHelp: "We structure the engagement strategy, align stakeholders, clarify outstanding issues, and negotiate an efficient path to resolution."
   },
   {
-    number: "2",
-    title: "Commercial Insurance Claims",
-    description: "A business experiences a significant operational loss and submits an insurance claim. Differences emerge regarding policy interpretation, claim valuation, supporting documentation, and settlement timelines.",
-    advisoryText: "Neutral Advisory supports management by developing negotiation strategies, preparing commercial positions, coordinating stakeholder engagement, and facilitating constructive settlement discussions."
+    number: "02",
+    category: "INSURANCE",
+    title: "Insurance Claim Under Dispute",
+    description: "A significant loss has occurred, but disagreements over policy interpretation, valuation, documentation, or settlement timelines are delaying resolution.",
+    howWeHelp: "We prepare the commercial position, coordinate stakeholder engagement, and support a structured path toward settlement."
   },
   {
-    number: "3",
-    title: "High-Value Commercial Negotiations",
-    description: "An organization is engaged in negotiations where commercial relationships remain important despite significant disagreement over commercial obligations.",
-    advisoryText: "Neutral Advisory assists leadership teams in identifying negotiation pathways that preserve commercial value while progressing toward practical resolution."
+    number: "03",
+    category: "COMMERCIAL STRATEGY",
+    title: "High-Value Negotiation Stalled",
+    description: "The relationship still matters, but both sides are entrenched and the gap between positions has become difficult to bridge.",
+    howWeHelp: "We identify viable negotiation pathways that protect commercial value while moving the relationship toward a workable resolution."
   },
   {
-    number: "4",
-    title: "Regulatory & Institutional Challenges",
-    description: "A business encounters prolonged delays arising from complex regulatory or institutional processes affecting commercial operations.",
-    advisoryText: "Neutral Advisory helps organizations structure engagement, prepare strategic communications, and navigate institutional environments more effectively."
+    number: "04",
+    category: "REGULATORY",
+    title: "Regulatory Process Creating Commercial Harm",
+    description: "Delayed approvals, institutional processes, or unclear channels of engagement are beginning to affect business operations.",
+    howWeHelp: "We structure the engagement strategy, prepare key communications, and help navigate the institutional environment effectively."
   },
   {
-    number: "5",
-    title: "Multi-Stakeholder Commercial Deadlocks",
-    description: "Projects involving lenders, insurers, customers, suppliers, consultants, or regulators often reach a point where progress stalls because each stakeholder has competing priorities.",
-    advisoryText: "Neutral Advisory develops negotiation frameworks that identify common interests, manage stakeholder expectations, and facilitate commercially viable outcomes."
+    number: "05",
+    category: "STAKEHOLDER ALIGNMENT",
+    title: "Multi-Party Deadlock",
+    description: "Lenders, insurers, partners, suppliers, customers, or regulators have competing priorities. Progress has stalled and internal bandwidth is under pressure.",
+    howWeHelp: "We create a negotiation framework that surfaces common ground, aligns stakeholders, and restores commercial momentum."
   },
   {
-    number: "6",
-    title: "Executive Negotiation Support",
-    description: "Business leaders are often required to negotiate under significant financial, operational, or reputational pressure.",
-    advisoryText: "Neutral Advisory provides confidential strategic advice before and throughout critical negotiations, enabling informed decisions and disciplined execution."
+    number: "06",
+    category: "EXECUTIVE ADVISORY",
+    title: "CEO or Board Facing a Critical Negotiation",
+    description: "The stakes are high, the other side is prepared, and leadership needs an independent perspective before making consequential decisions.",
+    howWeHelp: "We provide confidential preparation and strategic advisory before and throughout critical negotiations—enabling decisions to be made with clarity, discipline, and control."
   }
 ];
 
@@ -280,17 +286,9 @@ function Hero() {
       className="relative min-h-screen flex items-stretch overflow-hidden"
       style={{ backgroundColor: NAVY }}
     >
-      {/* Background texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(255,255,255,0.5) 80px, rgba(255,255,255,0.5) 81px), repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(255,255,255,0.5) 80px, rgba(255,255,255,0.5) 81px)`,
-        }}
-      />
-
-      <div className="relative max-w-screen-xl mx-auto w-full px-8 lg:px-16 grid lg:grid-cols-2 gap-0 min-h-screen">
+      <div className="relative max-w-screen-xl mx-auto w-full px-8 lg:px-16 grid lg:grid-cols-2 gap-0 min-h-screen pt-20">
         {/* Left: Text */}
-        <div className="flex flex-col justify-center py-40 lg:py-0 pr-0 lg:pr-16">
+        <div className="flex flex-col justify-center py-24 lg:py-12 pr-0 lg:pr-16">
           <div className="flex items-center gap-3 mb-12">
             <div className="h-px w-8" style={{ backgroundColor: GOLD }} />
             <span
@@ -753,21 +751,21 @@ function WhenEngage() {
 
 function CommercialScenarios() {
   return (
-    <section id="scenarios" className="py-32 bg-white">
+    <section id="scenarios" className="py-32 bg-white border-t" style={{ borderColor: "rgba(11,31,58,0.06)" }}>
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
         <div className="text-center mb-20">
           <GoldRule className="mx-auto mb-6" />
           <h2
-            className="text-4xl font-bold leading-tight text-[#06101E] mb-4"
+            className="text-4xl font-bold leading-tight text-[#06101E] mb-6"
             style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "-0.02em" }}
           >
-            Where Strategic Negotiation Makes the Difference
+            Recognize Your Situation.
           </h2>
           <p
-            className="text-sm leading-relaxed text-[#6B7280] max-w-2xl mx-auto"
+            className="text-lg leading-relaxed text-[#6B7280] max-w-2xl mx-auto"
             style={{ fontFamily: "Inter, sans-serif" }}
           >
-            Every commercial challenge is unique. The following examples illustrate situations where structured negotiation and objective advisory can significantly influence outcomes.
+            These are the moments where structured preparation and an independent perspective can change the outcome.
           </p>
         </div>
 
@@ -775,14 +773,19 @@ function CommercialScenarios() {
           {scenarios.map((s) => (
             <div
               key={s.number}
-              className="bg-white p-8 border border-gray-100 flex flex-col justify-between hover:bg-[#F8F9FA] hover:shadow-sm transition-all duration-300"
+              className="bg-[#F8F9FA] p-8 border border-gray-100 flex flex-col justify-between hover:bg-white hover:shadow-sm transition-all duration-300"
             >
               <div>
-                <span className="text-xs font-mono font-bold" style={{ color: GOLD }}>
-                  SCENARIO 0{s.number}
-                </span>
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-xs font-mono font-bold" style={{ color: GOLD }}>
+                    {s.number}
+                  </span>
+                  <span className="text-[9px] font-bold tracking-[0.15em] uppercase text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>
+                    {s.category}
+                  </span>
+                </div>
                 <h4
-                  className="font-bold text-[#06101E] leading-snug mt-3 mb-4 text-base"
+                  className="font-bold text-[#06101E] leading-snug mb-4 text-base"
                   style={{ fontFamily: "Manrope, sans-serif" }}
                 >
                   {s.title}
@@ -798,16 +801,27 @@ function CommercialScenarios() {
                 className="mt-auto pt-6 border-t"
                 style={{ borderColor: "rgba(11,31,58,0.08)" }}
               >
-                <span className="text-[10px] uppercase font-mono tracking-widest block text-[#A88E4B] mb-2 font-bold">Advisory Strategy</span>
+                <span className="text-[10px] uppercase font-mono tracking-widest block text-[#A88E4B] mb-2 font-bold">
+                  How we help
+                </span>
                 <p
                   className="text-xs text-[#06101E] leading-relaxed italic"
                   style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.7" }}
                 >
-                  {s.advisoryText}
+                  {s.howWeHelp}
                 </p>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Conclusion / Takeaway Callout */}
+        <div className="mt-20 text-center">
+          <div className="inline-block px-8 py-6 bg-[#F7F8FA] border border-dashed border-[#A88E4B]/40 max-w-2xl">
+            <p className="text-sm font-medium text-[#06101E]" style={{ fontFamily: "Inter, sans-serif" }}>
+              “Whatever commercial situation you are facing, there may be a structured negotiation or advisory pathway to move it forward.”
+            </p>
+          </div>
         </div>
       </div>
     </section>
