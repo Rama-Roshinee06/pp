@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
-import { ArrowRight, ArrowUpRight, Menu, X, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { ArrowRight, ArrowUpRight, Menu, X, ChevronDown, ArrowLeft } from "lucide-react";
 
 const NAVY = "#06101E"; // Original deeper, formal navy color
 const GOLD = "#A88E4B"; // Muted, sophisticated bronze-gold
-const GOLD_LIGHT = "#C3A65A";
 const OFF_WHITE = "#FAFAFA";
 
 const services = [
@@ -68,6 +67,25 @@ const pillars = [
   },
 ];
 
+const processSteps = [
+  {
+    title: "PREPARE",
+    description: "Establishing commercial context, aligning stakeholder positions, and defining objective targets."
+  },
+  {
+    title: "STRATEGIZE",
+    description: "Designing concession pathways, mapping options, and preparing tactical preparation files."
+  },
+  {
+    title: "EXECUTE",
+    description: "Operating directly alongside leadership in high-stakes boardroom negotiations."
+  },
+  {
+    title: "RESOLVE",
+    description: "Finalizing agreement structures, securing releases, and restoring momentum."
+  }
+];
+
 const engagementScenarios = [
   "Banking and lending disputes involving post-closure obligations or documentation.",
   "Complex insurance claim negotiations.",
@@ -75,15 +93,6 @@ const engagementScenarios = [
   "Regulatory or institutional challenges affecting business operations.",
   "High-value commercial settlements requiring structured negotiation.",
   "Multi-stakeholder negotiations where strategic coordination is essential."
-];
-
-const whyNeutralAdvisory = [
-  { title: "Independent Perspective", desc: "Objective analysis free from institutional conflicts of interest." },
-  { title: "Founder-Led Engagement", desc: "Direct, personal involvement of principal advisor on every matter." },
-  { title: "Strategic Negotiation Expertise", desc: "Decades of experience structuring deals and resolving deadlocks." },
-  { title: "Commercially Focused Advice", desc: "Protecting business value and prioritizing practical outcomes." },
-  { title: "Experience Across Highly Regulated Industries", desc: "Navigating complex financial, insurance, and telecom frameworks." },
-  { title: "Confidential & Objective Advisory", desc: "Complete discretion with a strict focus on facts and preparation." }
 ];
 
 const scenarios = [
@@ -207,10 +216,10 @@ function NavBar() {
             Neutral Advisory
           </span>
           <span
-            className="text-xs tracking-widest uppercase font-mono"
+            className="text-xs tracking-widest uppercase font-mono font-bold"
             style={{ color: GOLD, fontSize: "8px", letterSpacing: "0.2em" }}
           >
-            Negotiation & Commercial Resolution
+            STRATEGIC NEGOTIATION & DISPUTE ADVISORY
           </span>
         </a>
 
@@ -219,23 +228,22 @@ function NavBar() {
             <a
               key={l}
               href={`#${l.toLowerCase()}`}
-              className="text-white/70 hover:text-white transition-colors duration-200 text-sm tracking-wide"
+              className="text-white/70 hover:text-white transition-colors duration-200 text-[11px] font-semibold uppercase tracking-widest"
               style={{ fontFamily: "Inter, sans-serif" }}
             >
-              {l}
+              {l.toUpperCase()}
             </a>
           ))}
           <a
             href="#contact"
-            className="text-[13px] px-7 py-3 border transition-all duration-300 tracking-wide bg-white/0 hover:bg-white hover:text-[#06101E]"
+            className="text-[11px] px-7 py-3 border transition-all duration-300 tracking-widest uppercase font-semibold bg-white/0 hover:bg-white hover:text-[#06101E]"
             style={{
               borderColor: "rgba(255,255,255,0.3)",
               color: "#fff",
               fontFamily: "Inter, sans-serif",
-              letterSpacing: "0.05em"
             }}
           >
-            Confidential Consultation
+            CONFIDENTIAL CONSULTATION
           </a>
         </div>
 
@@ -258,20 +266,20 @@ function NavBar() {
               <a
                 key={l}
                 href={`#${l.toLowerCase()}`}
-                className="text-white/80 hover:text-white py-2 text-sm tracking-wide border-b"
+                className="text-white/80 hover:text-white py-2 text-xs uppercase tracking-widest border-b"
                 style={{ borderColor: "rgba(255,255,255,0.07)", fontFamily: "Inter, sans-serif" }}
                 onClick={() => setMobileOpen(false)}
               >
-                {l}
+                {l.toUpperCase()}
               </a>
             ))}
             <a
               href="#contact"
-              className="mt-2 text-sm py-3 text-center border tracking-wide"
+              className="mt-2 text-xs py-3 text-center border tracking-widest uppercase font-semibold"
               style={{ borderColor: GOLD, color: GOLD, fontFamily: "Inter, sans-serif" }}
               onClick={() => setMobileOpen(false)}
             >
-              Confidential Consultation
+              CONFIDENTIAL CONSULTATION
             </a>
           </div>
         </div>
@@ -283,24 +291,24 @@ function NavBar() {
 function Hero() {
   return (
     <section
-      className="relative min-h-screen flex items-stretch overflow-hidden"
+      className="relative min-h-[90vh] flex items-stretch overflow-hidden"
       style={{ backgroundColor: NAVY }}
     >
-      <div className="relative max-w-screen-xl mx-auto w-full px-8 lg:px-16 grid lg:grid-cols-2 gap-0 min-h-screen pt-20">
+      <div className="relative max-w-screen-xl mx-auto w-full px-8 lg:px-16 grid lg:grid-cols-2 gap-0 min-h-[90vh] pt-20">
         {/* Left: Text */}
-        <div className="flex flex-col justify-center py-24 lg:py-12 pr-0 lg:pr-16">
-          <div className="flex items-center gap-3 mb-12">
+        <div className="flex flex-col justify-center py-20 lg:py-12 pr-0 lg:pr-16">
+          <div className="flex items-center gap-3 mb-10">
             <div className="h-px w-8" style={{ backgroundColor: GOLD }} />
             <span
-              className="text-xs uppercase tracking-[0.25em]"
+              className="text-xs uppercase tracking-[0.25em] font-semibold"
               style={{ color: GOLD, fontFamily: "Inter, sans-serif" }}
             >
-              Strategic Negotiation
+              Strategic Negotiation & Dispute Advisory
             </span>
           </div>
 
           <h1
-            className="text-white leading-[1.08] mb-8"
+            className="text-white leading-[1.08] mb-6"
             style={{
               fontFamily: "Manrope, sans-serif",
               fontWeight: 700,
@@ -311,11 +319,11 @@ function Hero() {
             When the Stakes Are Too High, Strategy Matters.
           </h1>
 
-          <div className="h-px w-full max-w-sm mb-8 opacity-20" style={{ backgroundColor: "#fff" }} />
+          <div className="h-px w-full max-w-sm mb-6 opacity-20" style={{ backgroundColor: "#fff" }} />
 
           <p
-            className="text-white/60 leading-relaxed mb-12 max-w-md"
-            style={{ fontFamily: "Inter, sans-serif", fontSize: "1.02rem", lineHeight: "1.75" }}
+            className="text-white/60 leading-relaxed mb-10 max-w-md"
+            style={{ fontFamily: "Inter, sans-serif", fontSize: "1.02rem", lineHeight: "1.7" }}
           >
             High-stakes strategic negotiation and commercial dispute advisory, helping organizations achieve resolution while navigating complex, institutional red tape.
           </p>
@@ -403,9 +411,9 @@ function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <ChevronDown size={16} className="text-white/30 animate-bounce" />
-        <span className="text-white/20 text-xs tracking-widest uppercase" style={{ fontFamily: "Inter, sans-serif", fontSize: "9px" }}>
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
+        <ChevronDown size={14} className="text-white/30 animate-bounce" />
+        <span className="text-white/20 text-[8px] tracking-widest uppercase" style={{ fontFamily: "Inter, sans-serif" }}>
           Scroll
         </span>
       </div>
@@ -413,102 +421,152 @@ function Hero() {
   );
 }
 
+function BalanceDiagram() {
+  return (
+    <div className="relative w-full aspect-square max-w-[340px] mx-auto flex items-center justify-center">
+      {/* Central balance bar */}
+      <div className="absolute w-[80%] h-[2px] bg-gray-200" />
+      {/* Pivot point */}
+      <div className="absolute w-5 h-5 rounded-full border-2 bg-white" style={{ borderColor: GOLD }} />
+      {/* Vertical axis line (strategic distance) */}
+      <div className="absolute h-[80%] w-[1px] border-l border-dashed border-gray-300" />
+      
+      {/* Left side node (Position A - Bias) */}
+      <div className="absolute left-6 -translate-y-8 flex flex-col items-center">
+        <div className="w-3.5 h-3.5 rounded-full bg-[#06101E]/40" />
+        <span className="text-[9px] font-mono tracking-widest text-[#06101E]/50 mt-2 uppercase font-semibold">Bias</span>
+      </div>
+
+      {/* Right side node (Position B - Impasse) */}
+      <div className="absolute right-6 translate-y-8 flex flex-col items-center">
+        <div className="w-3.5 h-3.5 rounded-full bg-[#06101E]/40" />
+        <span className="text-[9px] font-mono tracking-widest text-[#06101E]/50 mt-2 uppercase font-semibold">Impasse</span>
+      </div>
+
+      {/* Neutral objective point (Balanced and elevated) */}
+      <div className="absolute top-6 flex flex-col items-center">
+        <div className="w-5 h-5 rounded-full flex items-center justify-center text-xs text-white" style={{ backgroundColor: GOLD }}>
+          ✓
+        </div>
+        <span className="text-[10px] font-mono tracking-widest font-bold mt-2 uppercase" style={{ color: GOLD }}>
+          Neutral Perspective
+        </span>
+      </div>
+
+      {/* Connection arcs or lines */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100">
+        <path d="M 20 44 Q 50 15 80 56" fill="none" stroke={GOLD} strokeWidth="1.5" strokeDasharray="3 3" opacity="0.6" />
+      </svg>
+    </div>
+  );
+}
+
 function AboutSection() {
   return (
-    <section id="about" className="py-32 bg-white">
-      <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24">
-          {/* Left: Image placeholder */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative">
-              <div
-                className="w-full bg-gray-100 border border-dashed border-[#A88E4B]/40 flex flex-col items-center justify-center p-8 text-center"
-                style={{ height: "540px" }}
-              >
-                <span className="text-[#A88E4B] text-[10px] tracking-[0.2em] uppercase mb-2 font-mono">Image Placeholder</span>
-                <span className="text-[#06101E] font-medium text-base mb-1" style={{ fontFamily: "Manrope, sans-serif" }}>
-                  [IMAGE PLACEHOLDER — ABOUT IMAGE]
+    <section id="about" className="overflow-hidden">
+      {/* PART 1: WHY "NEUTRAL" */}
+      <div className="py-24 bg-white border-b" style={{ borderColor: "rgba(11,31,58,0.06)" }}>
+        <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            {/* Left: Text details */}
+            <div className="lg:col-span-7">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-xs uppercase tracking-[0.25em] font-semibold" style={{ color: GOLD, fontFamily: "Inter, sans-serif" }}>
+                WHY NEUTRAL
                 </span>
-                <span className="text-gray-400 text-xs font-mono max-w-xs leading-relaxed">
-                  Strategic Advisory representation (900 × 600 px)
-                </span>
+                <div className="h-px w-8 bg-gray-200" />
               </div>
-              {/* Gold frame accent */}
+              
+              
+              <div className="flex flex-col gap-2 mb-8">
+                <div className="text-xs font-mono font-bold tracking-[0.25em]" style={{ color: GOLD }}>
+                  NEUTRAL ADVISORY
+                </div>
+                <div className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                  The meaning behind the name “Neutral”
+                </div>
+              </div>
+
               <div
-                className="absolute -bottom-4 -right-4 w-32 h-32 border-b-2 border-r-2 pointer-events-none"
-                style={{ borderColor: GOLD }}
-              />
-            </div>
-          </div>
+                className="text-base leading-relaxed text-[#6B7280] flex flex-col gap-6"
+                style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.85" }}
+              >
+                <p className="font-semibold text-[#06101E]">
+                  Successful negotiations are built on facts, preparation, commercial understanding, and disciplined execution.
+                </p>
+                <p>
+                  Being neutral enables better analysis, relevant negotiation strategy, and more sustainable commercial outcomes rather than biased, myopic, and stuck-in-impasse thinking.
+                </p>
+              </div>
 
-          {/* Right: Story */}
-          <div className="lg:col-span-7">
-            <GoldRule className="mb-6" />
-            <h2
-              className="text-4xl font-bold leading-tight mb-3"
-              style={{ fontFamily: "Manrope, sans-serif", color: "#06101E", letterSpacing: "-0.02em" }}
-            >
-              About Neutral Advisory
-            </h2>
-            <h3
-              className="text-xl italic font-light mb-8"
-              style={{ fontFamily: "Manrope, sans-serif", color: GOLD }}
-            >
-              Strategy Before Escalation.
-            </h3>
-            <div
-              className="text-base leading-relaxed text-[#6B7280] flex flex-col gap-6"
-              style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.85" }}
-            >
-              <p>
-                Many commercial disputes become unnecessarily prolonged because they begin without a structured negotiation strategy.
-              </p>
-              <p>
-                Neutral Advisory was established to provide organizations with independent strategic advice before commercial disagreements evolve into expensive operational or reputational challenges.
-              </p>
-              <p>
-                Our work is founded on three principles:
-              </p>
-              <ul className="list-disc pl-5 flex flex-col gap-2 font-medium text-[#06101E]">
-                <li>Objectivity</li>
-                <li>Commercial Thinking</li>
-                <li>Structured Negotiation</li>
-              </ul>
-              <p>
-                We assist organizations in preparing for negotiations, engaging with institutional stakeholders, managing complex commercial discussions, and pursuing practical business outcomes.
-              </p>
+              {/* Strategic Mandate callout */}
+              <div className="mt-8 p-6 border-l-4 bg-[#F7F8FA]" style={{ borderColor: GOLD }}>
+                <span className="text-[10px] uppercase font-mono tracking-widest text-[#A88E4B] block mb-2 font-bold">Strategic Mandate</span>
+                <p className="text-xs font-medium text-[#06101E] italic leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                  "It is wise to choose a dedicated expert partner to handle disputes and resolve rather than businesses facing in-house by exhausting time, money and developing stress within the organization."
+                </p>
+              </div>
             </div>
 
-            {/* Strategic Mandate callout */}
-            <div className="mt-8 p-8 border-l-4 bg-[#F7F8FA]" style={{ borderColor: GOLD }}>
-              <span className="text-[10px] uppercase font-mono tracking-widest text-[#A88E4B] block mb-2 font-bold">Strategic Mandate</span>
-              <p className="text-sm font-medium text-[#06101E] italic leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                "It is wise to choose a dedicated expert partner to handle disputes and resolve rather than businesses facing in-house by exhausting time, money and developing stress within the organization."
-              </p>
+            {/* Right: Custom visual balance metaphor */}
+            <div className="lg:col-span-5 flex items-center justify-center p-8 bg-[#F8F9FA] border border-gray-100 rounded-lg">
+              <BalanceDiagram />
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Why Neutral Advisory grid */}
-        <div className="pt-20 border-t" style={{ borderColor: "rgba(11,31,58,0.08)" }}>
-          <div className="text-center mb-16">
-            <span className="text-xs uppercase tracking-[0.2em] font-semibold" style={{ color: GOLD, fontFamily: "Inter, sans-serif" }}>
-              Our Values
-            </span>
-            <h3 className="text-3xl font-bold mt-2" style={{ fontFamily: "Manrope, sans-serif", color: "#06101E" }}>
-              Why Neutral Advisory
-            </h3>
+      {/* PART 2: THE NEUTRAL METHOD */}
+      <div id="method" style={{ backgroundColor: "#06101E" }} className="py-24 overflow-hidden">
+        <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
+          <div className="max-w-3xl mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px w-8" style={{ backgroundColor: GOLD }} />
+              <span className="text-xs uppercase tracking-[0.25em]" style={{ color: GOLD, fontFamily: "Inter, sans-serif" }}>
+                Proprietary Framework
+              </span>
+            </div>
+            <h2
+              className="text-4xl font-bold leading-tight text-white mb-6"
+              style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "-0.02em" }}
+            >
+              The Neutral Method
+            </h2>
+            <p
+              className="text-base leading-relaxed"
+              style={{ fontFamily: "Inter, sans-serif", color: "rgba(255,255,255,0.65)" }}
+            >
+              Focused preparation, dedicated partner in high stakes implementing proprietary techniques and expertise.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {whyNeutralAdvisory.map((item) => (
-              <div key={item.title} className="bg-[#F8F9FA] p-8 border border-gray-100 hover:bg-white hover:shadow-sm transition-all duration-300">
-                <div className="h-px w-8 bg-[#A88E4B] mb-6" />
-                <h4 className="font-semibold text-base mb-3" style={{ fontFamily: "Manrope, sans-serif", color: "#06101E" }}>
-                  {item.title}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {pillars.map((p, i) => (
+              <div
+                key={p.title}
+                className="p-8 bg-white/95 backdrop-blur-md border border-white/20 shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:-translate-y-1 transition-all duration-300 relative group rounded"
+              >
+                <div
+                  className="text-3xl font-bold mb-4 font-serif"
+                  style={{ color: GOLD }}
+                >
+                  {p.step}
+                </div>
+                <div
+                  className="h-px w-8 mb-6"
+                  style={{ backgroundColor: GOLD, opacity: i === 0 ? 1 : 0.4 }}
+                />
+                <h4
+                  className="font-bold mb-3 text-lg tracking-wide text-[#06101E]"
+                  style={{ fontFamily: "Manrope, sans-serif" }}
+                >
+                  {p.title}
                 </h4>
-                <p className="text-xs text-[#6B7280] leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                  {item.desc}
+                <p
+                  className="text-xs leading-relaxed text-[#1E293B] font-medium"
+                  style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.75" }}
+                >
+                  {p.body}
                 </p>
               </div>
             ))}
@@ -519,108 +577,11 @@ function AboutSection() {
   );
 }
 
-function WhyNeutral() {
-  return (
-    <section id="why-neutral" className="py-24 bg-[#F7F8FA] border-y" style={{ borderColor: "rgba(11,31,58,0.08)" }}>
-      <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5">
-            <GoldRule className="mb-6" />
-            <h2
-              className="text-4xl font-bold leading-tight"
-              style={{ fontFamily: "Manrope, sans-serif", color: "#06101E", letterSpacing: "-0.02em" }}
-            >
-              Why “Neutral”
-            </h2>
-          </div>
-          <div className="lg:col-span-7">
-            <div className="border-l-4 pl-8 py-2" style={{ borderColor: GOLD }}>
-              <p
-                className="text-lg font-medium leading-relaxed mb-4"
-                style={{ fontFamily: "Manrope, sans-serif", color: "#06101E" }}
-              >
-                Neutral represents an objective perspective.
-              </p>
-              <p
-                className="text-sm leading-relaxed text-[#6B7280]"
-                style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.8" }}
-              >
-                Successful negotiations are built on facts, preparation, commercial understanding, and disciplined execution.
-                <br /><br />
-                Being neutral enables better analysis, relevant negotiation strategy, and more sustainable commercial outcomes rather than being biased, myopic, and stuck in impasse.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ThreePillars() {
-  return (
-    <section id="pillars" style={{ backgroundColor: "#06101E" }} className="py-32 overflow-hidden">
-      <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
-        <div className="grid lg:grid-cols-12 gap-16 mb-20">
-          <div className="lg:col-span-6">
-            <GoldRule className="mb-6" />
-            <h2
-              className="text-4xl font-bold leading-tight text-white mb-6"
-              style={{ fontFamily: "Manrope, sans-serif", letterSpacing: "-0.02em" }}
-            >
-              The Neutral Method
-            </h2>
-            <p
-              className="text-sm leading-relaxed"
-              style={{ fontFamily: "Inter, sans-serif", color: "rgba(255,255,255,0.6)", lineHeight: "1.85" }}
-            >
-              Focused preparation, dedicated partner in high stakes implementing proprietary techniques and expertise.
-            </p>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pillars.map((p, i) => (
-            <div
-              key={p.title}
-              className="p-8 border border-white/10 hover:border-white/20 transition-colors duration-300"
-              style={{ backgroundColor: "#06101E" }}
-            >
-              <div
-                className="text-4xl font-light text-white/10 mb-8 select-none"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                {p.step}
-              </div>
-              <div
-                className="h-px w-8 mb-6"
-                style={{ backgroundColor: GOLD, opacity: i === 0 ? 1 : 0.4 }}
-              />
-              <h4
-                className="font-semibold text-white mb-4 leading-snug text-lg"
-                style={{ fontFamily: "Manrope, sans-serif" }}
-              >
-                {p.title}
-              </h4>
-              <p
-                className="text-xs leading-relaxed"
-                style={{ fontFamily: "Inter, sans-serif", color: "rgba(255,255,255,0.5)", lineHeight: "1.8" }}
-              >
-                {p.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function ServicesSection() {
   return (
-    <section id="services" className="py-32 bg-white">
+    <section id="services" className="py-24 bg-[#F7F8FA]">
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-20">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-16">
           <div className="lg:col-span-5">
             <GoldRule className="mb-6" />
             <h2
@@ -699,9 +660,21 @@ function ServicesSection() {
 }
 
 function WhenEngage() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const cardWidth = scrollRef.current.firstElementChild?.getBoundingClientRect().width || 300;
+      const gap = 24; // gap-6
+      const scrollAmount = direction === "left" ? -(cardWidth + gap) : (cardWidth + gap);
+      scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="py-24 bg-[#F8F9FA] border-y" style={{ borderColor: "rgba(11,31,58,0.08)" }}>
+    <section className="py-24 bg-white border-y" style={{ borderColor: "rgba(11,31,58,0.08)" }}>
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
+        {/* Q&A Header */}
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-16">
           <div className="lg:col-span-5">
             <GoldRule className="mb-6" />
@@ -709,40 +682,73 @@ function WhenEngage() {
               className="text-3xl font-bold leading-tight"
               style={{ fontFamily: "Manrope, sans-serif", color: "#06101E", letterSpacing: "-0.02em" }}
             >
-              When Businesses Engage Neutral Advisory
+              When do businesses engage Neutral Advisory?
             </h2>
           </div>
-          <div className="lg:col-span-7 lg:pt-8">
+          <div className="lg:col-span-7 lg:pt-8 flex flex-col gap-4">
             <p
               className="text-base leading-relaxed text-[#6B7280]"
               style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.8" }}
             >
               Organizations typically seek our support when commercial issues require strategic negotiation beyond routine business discussions.
             </p>
+            <p
+              className="text-sm font-semibold text-[#06101E]"
+              style={{ fontFamily: "Inter, sans-serif" }}
+            >
+              “Here are the types of situations where that support becomes relevant.”
+            </p>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {engagementScenarios.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-8 border hover:shadow-sm transition-all duration-300"
-              style={{ borderColor: "rgba(11,31,58,0.08)" }}
+        {/* Horizontal Editorial Carousel */}
+        <div className="relative">
+          {/* Controls */}
+          <div className="flex justify-end gap-3 mb-6">
+            <button
+              onClick={() => scroll("left")}
+              className="w-12 h-12 border border-[#06101E]/10 hover:border-[#06101E]/30 flex items-center justify-center transition-all duration-200 bg-[#FAFAFA]"
+              aria-label="Scroll left"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-semibold text-white" style={{ backgroundColor: GOLD }}>
-                  {idx + 1}
-                </div>
-                <div className="h-px flex-1" style={{ backgroundColor: "rgba(11,31,58,0.1)" }} />
-              </div>
-              <p
-                className="text-xs text-[#06101E] leading-relaxed font-medium"
-                style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.8" }}
+              <ArrowLeft size={16} style={{ color: "#06101E" }} />
+            </button>
+            <button
+              onClick={() => scroll("right")}
+              className="w-12 h-12 border border-[#06101E]/10 hover:border-[#06101E]/30 flex items-center justify-center transition-all duration-200 bg-[#FAFAFA]"
+              aria-label="Scroll right"
+            >
+              <ArrowRight size={16} style={{ color: "#06101E" }} />
+            </button>
+          </div>
+
+          {/* Snap scroll track */}
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4"
+            style={{
+              scrollSnapType: "x mandatory",
+            }}
+          >
+            {engagementScenarios.map((item, idx) => (
+              <div
+                key={idx}
+                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-[#F8F9FA] p-8 border border-gray-100 hover:bg-white hover:shadow-md transition-all duration-300 flex flex-col justify-between"
               >
-                {item}
-              </p>
-            </div>
-          ))}
+                <div>
+                  <span className="text-xs font-mono font-bold tracking-widest block mb-4" style={{ color: GOLD }}>
+                    0{idx + 1}
+                  </span>
+                  <div className="h-px w-full bg-gray-200/50 mb-6" />
+                  <p
+                    className="text-xs text-[#06101E] leading-relaxed font-semibold"
+                    style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.8" }}
+                  >
+                    {item}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -751,9 +757,9 @@ function WhenEngage() {
 
 function CommercialScenarios() {
   return (
-    <section id="scenarios" className="py-32 bg-white border-t" style={{ borderColor: "rgba(11,31,58,0.06)" }}>
+    <section id="scenarios" className="py-24 bg-[#F7F8FA] border-t" style={{ borderColor: "rgba(11,31,58,0.06)" }}>
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <GoldRule className="mx-auto mb-6" />
           <h2
             className="text-4xl font-bold leading-tight text-[#06101E] mb-6"
@@ -816,8 +822,8 @@ function CommercialScenarios() {
         </div>
 
         {/* Conclusion / Takeaway Callout */}
-        <div className="mt-20 text-center">
-          <div className="inline-block px-8 py-6 bg-[#F7F8FA] border border-dashed border-[#A88E4B]/40 max-w-2xl">
+        <div className="mt-16 text-center">
+          <div className="inline-block px-8 py-6 bg-white border border-dashed border-[#A88E4B]/40 max-w-2xl">
             <p className="text-sm font-medium text-[#06101E]" style={{ fontFamily: "Inter, sans-serif" }}>
               “Whatever commercial situation you are facing, there may be a structured negotiation or advisory pathway to move it forward.”
             </p>
@@ -830,7 +836,7 @@ function CommercialScenarios() {
 
 function IndustryExperience() {
   return (
-    <section id="experience" className="py-24 bg-[#F7F8FA] border-y" style={{ borderColor: "rgba(11,31,58,0.06)" }}>
+    <section id="experience" className="py-16 bg-white border-y" style={{ borderColor: "rgba(11,31,58,0.06)" }}>
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           <div className="lg:col-span-4">
@@ -868,7 +874,7 @@ function IndustryExperience() {
 
 function Founder() {
   return (
-    <section id="founder" className="py-32 bg-white">
+    <section id="founder" className="py-24 bg-white">
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
           {/* Left: Founder Portrait Placeholder */}
@@ -980,7 +986,7 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="py-32" style={{ backgroundColor: "#F7F8FA" }}>
+    <section id="contact" className="py-24 bg-[#F7F8FA]">
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
           <div className="lg:col-span-4">
@@ -1133,9 +1139,9 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer style={{ backgroundColor: "#06101E" }} className="pt-20 pb-10">
+    <footer style={{ backgroundColor: "#06101E" }} className="pt-16 pb-8">
       <div className="max-w-screen-xl mx-auto px-8 lg:px-16">
-        <div className="grid lg:grid-cols-12 gap-12 pb-16 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        <div className="grid lg:grid-cols-12 gap-12 pb-12 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
           <div className="lg:col-span-4">
             <div className="mb-2">
               <span
@@ -1146,16 +1152,16 @@ function Footer() {
               </span>
             </div>
             <div
-              className="text-xs tracking-widest uppercase mb-6 font-mono"
+              className="text-xs tracking-widest uppercase mb-6 font-mono font-bold"
               style={{ color: GOLD, fontSize: "8px" }}
             >
-              Negotiation & Commercial Resolution
+              STRATEGIC NEGOTIATION & DISPUTE ADVISORY
             </div>
             <p
               className="text-sm leading-relaxed max-w-xs"
               style={{ fontFamily: "Inter, sans-serif", color: "rgba(255,255,255,0.35)", lineHeight: "1.8" }}
             >
-              An independent strategic negotiation and commercial resolution advisory firm.
+              An independent strategic negotiation and dispute resolution advisory firm.
             </p>
           </div>
 
@@ -1256,12 +1262,12 @@ export default function App() {
         input:focus, textarea:focus, select:focus { border-bottom-color: ${NAVY} !important; }
         select option { color: ${NAVY}; background: white; }
         .service-card:hover h3 { color: ${GOLD}; }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
       <NavBar />
       <Hero />
       <AboutSection />
-      <WhyNeutral />
-      <ThreePillars />
       <ServicesSection />
       <WhenEngage />
       <CommercialScenarios />
