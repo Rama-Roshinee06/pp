@@ -1313,10 +1313,10 @@ function Contact() {
               <form onSubmit={handleSubmit} className="flex flex-col gap-8 p-12 bg-white rounded-lg shadow-2xl">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {[
-                    { key: "name", label: "Full Name", placeholder: "James Whitmore" },
-                    { key: "title", label: "Title / Role", placeholder: "Chief Executive Officer" },
-                    { key: "organization", label: "Organization", placeholder: "Acme Corporation" },
-                    { key: "email", label: "Email Address", placeholder: "james@acme.com" },
+                    { key: "name" as keyof ContactFormData, label: "Full Name", placeholder: "James Whitmore" },
+                    { key: "title" as keyof ContactFormData, label: "Title / Role", placeholder: "Chief Executive Officer" },
+                    { key: "organization" as keyof ContactFormData, label: "Organization", placeholder: "Acme Corporation" },
+                    { key: "email" as keyof ContactFormData, label: "Email Address", placeholder: "james@acme.com" },
                   ].map(({ key, label, placeholder }) => (
                     <div key={key}>
                       <label className="text-xs uppercase tracking-wider block mb-2 font-medium" style={{ color: TEXT_MUTED, fontFamily: "Inter, sans-serif" }}>
