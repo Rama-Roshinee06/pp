@@ -1218,8 +1218,17 @@ function Founder() {
   );
 }
 
+type ContactFormData = {
+  name: string;
+  title: string;
+  organization: string;
+  email: string;
+  matter: string;
+  message: string;
+};
+
 function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     title: "",
     organization: "",
@@ -1229,7 +1238,7 @@ function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
   };
@@ -1317,7 +1326,12 @@ function Contact() {
                         type={key === "email" ? "email" : "text"}
                         placeholder={placeholder}
                         value={formData[key]}
-                        onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            [key]: e.target.value,
+                          }))
+                        }
                         className="w-full px-4 py-3 rounded-lg border transition-all duration-200 focus:border-[#A88E4B] focus:outline-none"
                         style={{
                           fontFamily: "Inter, sans-serif",
